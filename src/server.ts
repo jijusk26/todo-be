@@ -1,0 +1,24 @@
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import type { Request, Response } from "express";
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+mongoose
+  .connect(process.env.MONGODB_URI ?? "mongodb://localhost:27017/todos")
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+const PORT = process.env.PORT || 3000;
+
+app.get("/", async (_req: Request, res: Response) => {
+  res.status(201).json("api working sucessfully");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
