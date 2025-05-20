@@ -3,10 +3,12 @@ const express = require("express");
 import mongoose from "mongoose";
 import type { Request, Response } from "express";
 import { UserRouter } from "./routes/user";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 mongoose
