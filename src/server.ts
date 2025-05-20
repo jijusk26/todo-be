@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
-import express from "express";
+const express = require("express");
 import mongoose from "mongoose";
 import type { Request, Response } from "express";
+import { UserRouter } from "./routes/user";
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ const PORT = process.env.PORT || 3000;
 app.get("/", async (_req: Request, res: Response) => {
   res.status(201).json("api working sucessfully");
 });
+
+app.use("/login", UserRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
