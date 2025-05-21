@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import type { Request, Response } from "express";
 import { UserRouter } from "./routes/user";
 import cors from "cors";
+import { TodoRouter } from "./routes/todos/todo";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get("/", async (_req: Request, res: Response) => {
 });
 
 app.use("/login", UserRouter);
+app.use("/todos", TodoRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
