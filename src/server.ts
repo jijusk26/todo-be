@@ -5,6 +5,7 @@ import type { Request, Response } from "express";
 import { UserRouter } from "./routes/user";
 import cors from "cors";
 import { TodoRouter } from "./routes/todos/todo";
+import { PostRouter } from "./routes/posts";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("/", async (_req: Request, res: Response) => {
 
 app.use("/login", UserRouter);
 app.use("/todos", TodoRouter);
+app.use("/post", PostRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
